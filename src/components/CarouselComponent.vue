@@ -25,7 +25,13 @@
 
 <style lang="css" scoped>
 	.vs-carousel {
-		height: 500px;
+		height: 300px;
+	}
+
+	@media screen and (min-width: 768px) {
+		.vs-carousel {
+			height: 500px;
+		}
 	}
 
 	.vs-carousel img {
@@ -66,7 +72,6 @@
 				);
 				const dogs = await result.json();
 				this.dog_breed_imgs = dogs.message.slice(0, this.limit);
-				console.log(dogs);
 			},
 		},
 	};

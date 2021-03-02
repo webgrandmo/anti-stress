@@ -95,12 +95,8 @@
 			const data = await f.json();
 			const r = await fetch(`https://dog.ceo/api/breeds/list/all`);
 			const breeds = await r.json();
-			console.log(breeds);
 			this.breeds = breeds.message;
-			console.log(this.breeds);
 			this.random_img_url = data.message;
-
-			console.log(this.items);
 		},
 	};
 </script>
