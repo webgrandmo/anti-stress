@@ -10,19 +10,8 @@
 			<div class="row">
 				<div class="col-12">
 					<br />
-					<div class="form-group">
-						<button class="btn btn-primary" @click="fetchImg">
-							Get Random Doggy
-						</button>
-					</div>
-
-					<div class="card text-center">
-						<div class="card-body">
-							<div class="doggy-img">
-								<img :src="random_img_url" alt="asdasd" />
-							</div>
-						</div>
-					</div>
+					<button-component @get-image="fetchImg"></button-component>
+					<image-component :randomImage="random_img_url"></image-component>
 					<br />
 					<carousel-component
 						:breeds="breeds"
@@ -64,13 +53,17 @@
 
 <script>
 	import CarouselComponent from './components/CarouselComponent.vue';
+	import ImageComponent from './components/ImageComponent.vue';
 
 	import HeaderComponent from './components/layout/HeaderComponent.vue';
+	import ButtonComponent from './components/ui-controls/ButtonComponent.vue';
 	export default {
 		name: 'App',
 		components: {
 			HeaderComponent,
 			CarouselComponent,
+			ImageComponent,
+			ButtonComponent,
 		},
 		data() {
 			return {
@@ -78,7 +71,6 @@
 				images: [],
 				breeds: {},
 				random_img_url: '',
-				breed_img_url: '',
 				limit: 100,
 			};
 		},
