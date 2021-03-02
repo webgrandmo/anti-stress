@@ -8,14 +8,14 @@
 					class="form-control"
 					@change="fetchBreed($event)"
 				>
+					<option value="boxer">Select a breed</option>
 					<option v-for="(value, name) in breeds" :key="name" :value="name">{{
 						name
 					}}</option>
-					<option value="boxer">Boxer</option>
 				</select>
 			</div>
 			<carousel>
-				<slide v-for="(item, index) in images" :key="index">
+				<slide v-for="(item, index) in dog_breed_imgs" :key="index">
 					<img :src="item" alt="Dog image" />
 				</slide>
 			</carousel>
@@ -44,12 +44,12 @@
 		},
 		data() {
 			return {
-				dog_breed: '',
+				dog_breed_imgs: this.images,
 			};
 		},
 		props: {
 			images: Array,
-			breeds: Array,
+			breeds: Object,
 		},
 		// async beforMount(e) {
 		// 	const result = await fetch(
@@ -65,7 +65,7 @@
 					`https://dog.ceo/api/breed/${e.target.value}/images`
 				);
 				const dogs = await result.json();
-				this.images = dogs.message.slice(0, this.limit);
+				this.dog_breed_imgs = dogs.message.slice(0, this.limit);
 				console.log(dogs);
 			},
 		},

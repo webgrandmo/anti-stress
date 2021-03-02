@@ -76,7 +76,7 @@
 			return {
 				items: [],
 				images: [],
-				breeds: [],
+				breeds: {},
 				random_img_url: '',
 				breed_img_url: '',
 				limit: 100,
