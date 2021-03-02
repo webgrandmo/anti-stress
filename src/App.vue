@@ -24,15 +24,10 @@
 						</div>
 					</div>
 					<br />
-					<div class="card">
-						<div class="card-body">
-							<carousel>
-								<slide v-for="item in images.slice(0, 100)" :key="item.message">
-									<img :src="item" alt="Dog image" />
-								</slide>
-							</carousel>
-						</div>
-					</div>
+					<carousel-component
+						:breeds="breeds"
+						:images="images"
+					></carousel-component>
 				</div>
 			</div>
 		</div>
@@ -55,15 +50,10 @@
 			width: 600px;
 		}
 	}
-
-	.vs-carousel__arrows {
-		background: rgba(0, 0, 0, 0.3);
-		border: none;
-		border-radius: 50%;
-		color: white;
+	.vs-carousel .vs-carousel__arrows {
 		text-indent: -9999px;
+		border: none;
 	}
-
 	.vs-carousel__arrows--right {
 		background: url('./assets/next.svg') no-repeat center;
 	}
@@ -73,22 +63,23 @@
 </style>
 
 <script>
-	import { Carousel, Slide } from 'vue-snap';
-	import 'vue-snap/dist/vue-snap.css';
+	import CarouselComponent from './components/CarouselComponent.vue';
+
 	import HeaderComponent from './components/layout/HeaderComponent.vue';
 	export default {
 		name: 'App',
 		components: {
 			HeaderComponent,
-			Carousel,
-			Slide,
+			CarouselComponent,
 		},
 		data() {
 			return {
 				items: [],
 				images: [],
+				breeds: [],
 				random_img_url: '',
 				breed_img_url: '',
+				limit: 100,
 			};
 		},
 		methods: {
@@ -102,11 +93,13 @@
 		async beforeMount() {
 			const f = await fetch(`https://dog.ceo/api/breeds/image/random`);
 			const data = await f.json();
-			const result = await fetch(`https://dog.ceo/api/breed/hound/images`);
-			const dogs = await result.json();
+			const r = await fetch(`https://dog.ceo/api/breeds/list/all`);
+			const breeds = await r.json();
+			console.log(breeds);
+			this.breeds = breeds.message;
+			console.log(this.breeds);
 			this.random_img_url = data.message;
-			this.images = dogs.message;
-			console.log(dogs);
+
 			console.log(this.items);
 		},
 	};
