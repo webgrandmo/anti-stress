@@ -1,29 +1,35 @@
 <template>
-	<div class="card">
-		<div class="card-body">
-			<div class="form-group">
-				<select
-					name="breed"
-					id="breed"
-					class="form-control"
-					@change="fetchBreed($event)"
-				>
-					<option value="boxer">Select a breed</option>
-					<option v-for="(value, name) in breeds" :key="name" :value="name">{{
-						name
-					}}</option>
-				</select>
+	<div class="breed-component-container">
+		<div class="card">
+			<div class="card-body">
+				<div class="form-group">
+					<select
+						name="breed"
+						id="breed"
+						class="form-control"
+						@change="fetchBreed($event)"
+					>
+						<option value="boxer">Select a breed</option>
+						<option v-for="(value, name) in breeds" :key="name" :value="name">{{
+							name
+						}}</option>
+					</select>
+				</div>
+				<carousel>
+					<img :src="img_url" class="img-placeholder" alt="Dog image" />
+					<slide v-for="(item, index) in dog_breed_imgs" :key="index">
+						<img :src="item" alt="Dog image" />
+					</slide>
+				</carousel>
 			</div>
-			<carousel>
-				<slide v-for="(item, index) in dog_breed_imgs" :key="index">
-					<img :src="item" alt="Dog image" />
-				</slide>
-			</carousel>
 		</div>
 	</div>
 </template>
 
 <style lang="css" scoped>
+	.breed-component-container {
+		margin: 3rem 0;
+	}
 	.vs-carousel {
 		height: 300px;
 	}
@@ -34,8 +40,27 @@
 		}
 	}
 
+	.vs-carousel__slide {
+		height: 300px;
+	}
+
+	#breed {
+		width: 50%;
+		margin: 0 auto;
+	}
+
+	@media screen and (min-width: 768px) {
+		.vs-carousel__slide {
+			height: 500px;
+		}
+	}
+
 	.vs-carousel img {
 		max-width: 100%;
+		height: 100%;
+	}
+	.img-placeholder {
+		margin: 0 auto;
 	}
 </style>
 
@@ -56,15 +81,8 @@
 		props: {
 			images: Array,
 			breeds: Object,
+			img_url: String,
 		},
-		// async beforMount(e) {
-		// 	const result = await fetch(
-		// 		`https://dog.ceo/api/breed/${e.target.value}/images`
-		// 	);
-		// 	const dogs = await result.json();
-		// 	this.images = dogs.message.slice(0, this.limit);
-		// 	console.log(dogs);
-		// },
 		methods: {
 			async fetchBreed(e) {
 				const result = await fetch(

@@ -1,8 +1,10 @@
 <template>
-	<div class="card text-center">
-		<div class="card-body">
-			<div class="doggy-img">
-				<img :src="randomImage" alt="Dog Image" />
+	<div class="image-component-container">
+		<div class="card text-center">
+			<div class="card-body">
+				<div class="doggy-img">
+					<img :src="randomImage" alt="Dog Image" />
+				</div>
 			</div>
 		</div>
 	</div>

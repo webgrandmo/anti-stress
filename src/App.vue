@@ -1,21 +1,20 @@
 <template>
 	<div id="app">
-		<header-component
-			fullList="Full List"
-			random="Random Doggy"
-			subBreed="Sub Breed"
-			breed="Breed"
-		></header-component>
+		<header-component></header-component>
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
+					<h1 class="mt-5 mb-5 text-center">Check-out Doggy</h1>
 					<br />
 					<button-component @get-image="fetchImg"></button-component>
 					<image-component :randomImage="random_img_url"></image-component>
 					<br />
+					<br />
+					<h2 class="mt-5 mb-5 text-center">Or explore by breed</h2>
 					<carousel-component
 						:breeds="breeds"
 						:images="images"
+						:img_url="random_img_url"
 					></carousel-component>
 				</div>
 			</div>
@@ -40,14 +39,20 @@
 		}
 	}
 	.vs-carousel .vs-carousel__arrows {
-		text-indent: -9999px;
-		border: none;
+		display: none;
 	}
-	.vs-carousel__arrows--right {
-		background: url('./assets/next.svg') no-repeat center;
-	}
-	.vs-carousel__arrows--left {
-		background: url('./assets/back.svg') no-repeat center;
+	@media screen and (min-width: 768px) {
+		.vs-carousel .vs-carousel__arrows {
+			text-indent: -9999px;
+			border: none;
+			display: block;
+		}
+		.vs-carousel__arrows--right {
+			background: url('./assets/next.svg') no-repeat center;
+		}
+		.vs-carousel__arrows--left {
+			background: url('./assets/back.svg') no-repeat center;
+		}
 	}
 </style>
 
