@@ -6,8 +6,11 @@
 				<div class="col-12">
 					<h1 class="mt-5 mb-5 text-center">Check-out Doggy</h1>
 					<br />
-					<button-component @get-image="fetchImg"></button-component>
-					<image-component :randomImage="random_img_url"></image-component>
+
+					<image-component
+						@get-image="fetchImg"
+						:randomImage="random_img_url"
+					></image-component>
 					<br />
 					<br />
 					<h2 class="mt-5 mb-5 text-center">Or explore by breed</h2>
@@ -23,36 +26,18 @@
 </template>
 
 <style lang="css">
-	.doggy-img {
-		width: 300px;
-		height: auto;
-		margin: auto;
-	}
-
-	.doggy-img img {
-		max-width: 100%;
-	}
-
-	@media screen and (min-width: 768px) {
-		.doggy-img {
-			width: 600px;
-		}
-	}
 	.vs-carousel .vs-carousel__arrows {
-		display: none;
+		text-indent: -9999px;
+		border: none;
+		display: block;
+		width: 40px;
+		height: 40px;
 	}
-	@media screen and (min-width: 768px) {
-		.vs-carousel .vs-carousel__arrows {
-			text-indent: -9999px;
-			border: none;
-			display: block;
-		}
-		.vs-carousel__arrows--right {
-			background: url('./assets/next.svg') no-repeat center;
-		}
-		.vs-carousel__arrows--left {
-			background: url('./assets/back.svg') no-repeat center;
-		}
+	.vs-carousel__arrows--right {
+		background: url('./assets/next.svg') no-repeat center;
+	}
+	.vs-carousel__arrows--left {
+		background: url('./assets/back.svg') no-repeat center;
 	}
 </style>
 
@@ -61,14 +46,13 @@
 	import ImageComponent from './components/ImageComponent.vue';
 
 	import HeaderComponent from './components/layout/HeaderComponent.vue';
-	import ButtonComponent from './components/ui-controls/ButtonComponent.vue';
+
 	export default {
 		name: 'App',
 		components: {
 			HeaderComponent,
 			CarouselComponent,
 			ImageComponent,
-			ButtonComponent,
 		},
 		data() {
 			return {

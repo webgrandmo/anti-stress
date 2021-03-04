@@ -15,9 +15,13 @@
 						}}</option>
 					</select>
 				</div>
-				<carousel>
+				<carousel v-if="dog_breed_imgs.length">
 					<img :src="img_url" class="img-placeholder" alt="Dog image" />
-					<slide v-for="(item, index) in dog_breed_imgs" :key="index">
+					<slide
+						ref="imageSlider"
+						v-for="(item, index) in dog_breed_imgs"
+						:key="index"
+					>
 						<img :src="item" alt="Dog image" />
 					</slide>
 				</carousel>
@@ -26,9 +30,13 @@
 	</div>
 </template>
 
-<style lang="css" scoped>
+<style scoped>
 	.breed-component-container {
 		margin: 3rem 0;
+	}
+
+	.vs-carousel__wrapper {
+		height: 300px;
 	}
 	.vs-carousel {
 		height: 300px;
@@ -38,10 +46,9 @@
 		.vs-carousel {
 			height: 500px;
 		}
-	}
-
-	.vs-carousel__slide {
-		height: 300px;
+		.vs-carousel__wrapper {
+			height: 500px;
+		}
 	}
 
 	#breed {
@@ -90,6 +97,19 @@
 				);
 				const dogs = await result.json();
 				this.dog_breed_imgs = dogs.message.slice(0, this.limit);
+
+				setTimeout(() => {
+					if (this.dog_breed_imgs.length) {
+						this.handleChange();
+					}
+				}, 300);
+			},
+			handleChange() {
+				const slideImg = document.querySelector('.vs-carousel__slide');
+				slideImg.scrollIntoView({
+					block: 'center',
+					behavior: 'smooth',
+				});
 			},
 		},
 	};

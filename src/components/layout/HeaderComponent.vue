@@ -18,9 +18,14 @@
 </template>
 
 <style>
-	@media screen and (max-width: 768px) {
+	.navbar-brand {
+		display: block;
+		width: 100%;
+		text-align: center;
+	}
+	@media screen and (min-width: 700px) {
 		.navbar-brand {
-			margin: 0 auto;
+			text-align: left;
 		}
 	}
 </style>
