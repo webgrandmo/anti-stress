@@ -9,7 +9,7 @@
 		position: absolute;
 		top: 0;
 		bottom: 0;
-		right: 0;
+		right: 1rem;
 		margin: auto;
 		width: 44px;
 		height: 44px;

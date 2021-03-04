@@ -29,7 +29,7 @@
 
 	@media screen and (min-width: 768px) {
 		.doggy-img {
-			width: 600px;
+			width: 480px;
 			height: 500px;
 		}
 	}
